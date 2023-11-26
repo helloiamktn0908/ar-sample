@@ -8,12 +8,12 @@
     <!-- a-sceneのところへ「embedded arjs」と入れないと、アスペクト比（縦横比）が狂います -->
 
     <!-- ARマーカーが認識されたら -->
-    <a-marker type="pattern" preset="custom" url="/coffee.patt">
+    <a-marker type="pattern" preset="custom" url="./coffee.patt">
       <!-- 「pattern-cake_Qiita1.patt」には作成したARマーカーのファイル名を入れる -->
 
       <!-- 画像を表示します -->
       <a-entity
-        gltf-model="url(/coffee.glb)"
+        gltf-model="url(./coffee.glb)"
         position="0 0 0"
         rotation="0 0 0"
         scale="0.6 0.6 0.6"
