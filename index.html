@@ -1,27 +1,36 @@
-<!-- A-Frameを読み込む -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.2.0/aframe.min.js"></script>
-<!-- AR.jsを読み込む -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ar.js/2.2.2/aframe-ar.min.js"></script>
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- A-Frame を読み込む -->
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <!-- AR.js を読み込む -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <title>Coffee</title>
+  </head>
+  <body style="margin: 0; overflow: hidden">
+    <!-- A-FrameにAR.jsを紐づけ、VRボタン非表示、深度バッファ追加 -->
+    <a-scene
+      embedded
+      arjs
+      vr-mode-ui="enabled: false;"
+      renderer="logarithmicDepthBuffer: true;"
+    >
+      <!-- 3DCGモデルを読み込む -->
+      <a-assets>
+        <a-asset-item id="coffee" src="./coffee.glb"></a-asset-item>
+      </a-assets>
 
-<body style="margin: 0px; overflow: hidden">
-  <a-scene embedded arjs>
-    <!-- a-sceneのところへ「embedded arjs」と入れないと、アスペクト比（縦横比）が狂います -->
+      <!-- マーカーの.pattファイルを読み込む -->
+      <a-marker type="pattern" url="./coffee.patt">
+        <!-- 3Dモデルを呼び出す -->
+        <a-entity gltf-model="#coffee"></a-entity>
+      </a-marker>
 
-    <!-- ARマーカーが認識されたら -->
-    <a-marker type="pattern" preset="custom" url="./coffee.patt">
-      <!-- 「pattern-cake_Qiita1.patt」には作成したARマーカーのファイル名を入れる -->
-
-      <!-- 画像を表示します -->
-      <a-entity
-        gltf-model="url(./coffee.glb)"
-        position="0 0 0"
-        rotation="0 0 0"
-        scale="0.6 0.6 0.6"
-      >
-      </a-entity>
-      <!-- 「cake_Qiita1.glb」には作成したGLBファイル名を入れる -->
-      <!-- position、rotation、scaleは好みで調整 -->
-    </a-marker>
-    <a-entity camera></a-entity>
-  </a-scene>
-</body>
+      <!-- カメラを追加 -->
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
+</html>
